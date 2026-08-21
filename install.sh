@@ -11,7 +11,7 @@
 #  Product Name : aashi - WALKSYS PANEL
 #  Panel Banner : WALKSYS PANEL
 #  Version      : v3.1.0
-#  Creator      : Jishnu
+#  Creator      : Walksys
 #  Repository   : https://github.com/Walksys/Walksys
 # ==============================================================================
 
@@ -20,7 +20,7 @@ set -e
 # Panel Core Configuration
 PANEL_TITLE="WALKSYS PANEL"
 PANEL_SUBTITLE="aashi - WALKSYS PANEL"
-PANEL_AUTHOR="Jishnu"
+PANEL_AUTHOR="Walksys"
 PANEL_VERSION="3.1.0"
 DEFAULT_PROD_PORT=6767
 DEFAULT_DEV_PORT=30000
@@ -408,7 +408,7 @@ setup_environment() {
     cat > .env <<EOF
 # ==============================================================================
 # aashi - WALKSYS PANEL Configuration
-# Credit: Jishnu
+# Credit: Walksys
 # ==============================================================================
 # NODE_ENV is set dynamically during runtime
 PORT=${target_port}

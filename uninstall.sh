@@ -10,7 +10,7 @@
 #
 #  Product Name : aashi - WALKSYS PANEL (Uninstaller)
 #  Banner       : WALKSYS PANEL
-#  Creator      : Jishnu
+#  Creator      : Walksys
 # ==============================================================================
 
 set -e
@@ -29,7 +29,7 @@ C_MUTED='\033[38;5;244m'
 echo ""
 echo -e "${C_CRIMSON}${C_BOLD}  ╭──────────────────────────────────────────────────────────────────────────╮${C_RESET}"
 echo -e "${C_CRIMSON}${C_BOLD}  │                 WALKSYS PANEL - UNINSTALLATION WIZARD                        │${C_RESET}"
-echo -e "${C_CRIMSON}${C_BOLD}  │               Credit: Jishnu  |  aashi - WALKSYS PANEL                       │${C_RESET}"
+echo -e "${C_CRIMSON}${C_BOLD}  │               Credit: Walksys  |  aashi - WALKSYS PANEL                       │${C_RESET}"
 echo -e "${C_CRIMSON}${C_BOLD}  ╰──────────────────────────────────────────────────────────────────────────╯${C_RESET}"
 echo ""
 echo -e "  ${C_AMBER}${C_BOLD}WARNING:${C_RESET} ${C_WHITE}This will stop PM2 services and clean up panel files.${C_RESET}"

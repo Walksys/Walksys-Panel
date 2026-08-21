@@ -78,7 +78,7 @@
     "typescript": "~5.8.2",
     "vite": "^6.2.3"
   },
-  "description": "Next-generation Game Server Orchestration & Management Panel by Jishnu",
+  "description": "Next-generation Game Server Orchestration & Management Panel by Walksys",
   "keywords": [
     "minecraft",
     "gameserver",
@@ -88,6 +88,6 @@
     "Walksys-panel",
     "management"
   ],
-  "author": "Jishnu",
+  "author": "Walksys",
   "license": "MIT"
 }
