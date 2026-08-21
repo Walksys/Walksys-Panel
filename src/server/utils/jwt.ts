@@ -26,7 +26,7 @@ export function getJwtSecret(): string {
       console.error("\n================================================================================");
       console.error("[FATAL SECURITY ERROR] JWT_SECRET is too short!");
       console.error(`Current length: ${envSecret.length} characters. Minimum required: 32 characters.`);
-      console.error("In production mode, JTG Panel refuses to start with a weak secret.");
+      console.error("In production mode, WALKSYS Panel refuses to start with a weak secret.");
       console.error("Please set a strong JWT_SECRET in your environment or .env file.");
       console.error("Example: JWT_SECRET=" + crypto.randomBytes(32).toString("hex"));
       console.error("================================================================================\n");
@@ -42,7 +42,7 @@ export function getJwtSecret(): string {
   if (isProduction) {
     console.error("\n================================================================================");
     console.error("[FATAL SECURITY ERROR] JWT_SECRET environment variable is missing!");
-    console.error("In production mode, JTG Panel refuses to start without an explicit secure secret.");
+    console.error("In production mode, WALKSYS Panel refuses to start without an explicit secure secret.");
     console.error("Please set JWT_SECRET (at least 32 characters) in your environment or .env file.");
     console.error("Example: JWT_SECRET=" + crypto.randomBytes(32).toString("hex"));
     console.error("================================================================================\n");

@@ -12,7 +12,7 @@ import { formatBytesToDisplay, formatMBToDisplay } from "../src/types/stats.js";
 
 async function runTests() {
   console.log("\n==================================================");
-  console.log("  RUNNING JTG PANEL SECURITY & BUG FIX TEST SUITE  ");
+  console.log("  RUNNING WALKSYS PANEL SECURITY & BUG FIX TEST SUITE  ");
   console.log("==================================================\n");
 
   let passed = 0;

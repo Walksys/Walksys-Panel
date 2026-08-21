@@ -67,9 +67,9 @@ export default function Dashboard() {
   const { servers: rawServers } = useDashboardData();
   const realServers = Array.isArray(rawServers) ? rawServers : [];
   const { panelName } = useSettings();
-  const pName = panelName || 'JTG PANEL';
+  const pName = panelName || 'WALKSYS PANEL';
   const nameParts = pName.split(' ');
-  const firstWord = nameParts[0]?.toUpperCase() || 'JTG';
+  const firstWord = nameParts[0]?.toUpperCase() || 'WALKSYS';
   const restWords = nameParts.slice(1).join(' ').toUpperCase();
 
 

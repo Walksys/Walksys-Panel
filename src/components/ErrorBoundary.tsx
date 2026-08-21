@@ -58,7 +58,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error("[JTG Panel UI Error]", error, errorInfo);
+    console.error("[WALKSYS Panel UI Error]", error, errorInfo);
     this.setState({ errorInfo });
 
     // Send client error diagnostic telemetry to backend (non-blocking)
@@ -101,7 +101,7 @@ export class ErrorBoundary extends Component<Props, State> {
   private handleCopy = () => {
     const { error, errorInfo, errorId } = this.state;
     const diagnostics = [
-      `JTG Panel UI Exception Report [ID: ${errorId || "UNKNOWN"}]`,
+      `WALKSYS Panel UI Exception Report [ID: ${errorId || "UNKNOWN"}]`,
       `Time: ${new Date().toISOString()}`,
       `URL: ${window.location.href}`,
       `User Agent: ${navigator.userAgent}`,
@@ -142,7 +142,7 @@ export class ErrorBoundary extends Component<Props, State> {
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
                   <h1 className="text-xl font-bold tracking-tight text-white">
-                    {isChunkError ? "Application Update Detected" : "JTG Panel could not load."}
+                    {isChunkError ? "Application Update Detected" : "WALKSYS Panel could not load."}
                   </h1>
                   {errorId && (
                     <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/30">
@@ -152,7 +152,7 @@ export class ErrorBoundary extends Component<Props, State> {
                 </div>
                 <p className="text-sm text-gray-400 leading-relaxed">
                   {isChunkError
-                    ? "A newer version of JTG Panel was deployed or dynamic assets were refreshed. Reloading will sync your browser with the latest version."
+                    ? "A newer version of WALKSYS Panel was deployed or dynamic assets were refreshed. Reloading will sync your browser with the latest version."
                     : "The frontend encountered an unexpected error."}
                 </p>
               </div>

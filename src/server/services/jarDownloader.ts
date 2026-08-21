@@ -5,7 +5,7 @@ import { pipeline } from "stream/promises";
 import { secureExecutablePermissions } from "../utils/permissions.js";
 
 const DEFAULT_HEADERS = {
-  "User-Agent": "JTGPanel/3.1.0 (https://github.com/jishnu; support@jtgpanel.net)",
+  "User-Agent": "WALKSYSPanel/3.1.0 (https://github.com/jishnu; support@jtgpanel.net)",
   "Accept": "*/*"
 };
 

@@ -8,23 +8,23 @@
 #  ╚█████╔╝   ██║   ╚██████╔╝    ██║     ██║  ██║██║ ╚████║███████╗███████╗
 #   ╚════╝    ╚═╝    ╚═════╝     ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝
 #
-#  Product Name : aashi - JTG PANEL
-#  Panel Banner : JTG PANEL
+#  Product Name : aashi - WALKSYS PANEL
+#  Panel Banner : WALKSYS PANEL
 #  Version      : v3.1.0
 #  Creator      : Jishnu
-#  Repository   : https://github.com/JishnuTheGamer/Jtg
+#  Repository   : https://github.com/Walksys/Walksys
 # ==============================================================================
 
 set -e
 
 # Panel Core Configuration
-PANEL_TITLE="JTG PANEL"
-PANEL_SUBTITLE="aashi - JTG PANEL"
+PANEL_TITLE="WALKSYS PANEL"
+PANEL_SUBTITLE="aashi - WALKSYS PANEL"
 PANEL_AUTHOR="Jishnu"
 PANEL_VERSION="3.1.0"
 DEFAULT_PROD_PORT=6767
 DEFAULT_DEV_PORT=30000
-REPO_URL="https://github.com/JishnuTheGamer/Jtg.git"
+REPO_URL="https://github.com/Walksys/Walksys.git"
 
 # High-Contrast Deep ANSI Palette
 C_RESET='\033[0m'
@@ -63,7 +63,7 @@ print_banner() {
     echo -e "${C_DEEP_BLUE}  │ ${C_WHITE}${C_BOLD}                     ${PANEL_SUBTITLE} (v${PANEL_VERSION})                         ${C_DEEP_BLUE}│${C_RESET}"
     echo -e "${C_DEEP_BLUE}  │ ${C_MUTED}         Next-Gen Game Server & Workload Control Dashboard                ${C_DEEP_BLUE}│${C_RESET}"
     echo -e "${C_DEEP_BLUE}  │ ${C_AMBER}                  Credit / Author: ${C_WHITE}${C_BOLD}${PANEL_AUTHOR}                               ${C_DEEP_BLUE}│${C_RESET}"
-    echo -e "${C_DEEP_BLUE}  │ ${C_VIBRANT_CYAN}         Repo: ${C_WHITE}https://github.com/JishnuTheGamer/Jtg                      ${C_DEEP_BLUE}│${C_RESET}"
+    echo -e "${C_DEEP_BLUE}  │ ${C_VIBRANT_CYAN}         Repo: ${C_WHITE}https://github.com/Walksys/Walksys                      ${C_DEEP_BLUE}│${C_RESET}"
     echo -e "${C_DEEP_BLUE}  ╰──────────────────────────────────────────────────────────────────────────╯${C_RESET}"
     echo ""
 }
@@ -211,7 +211,7 @@ prompt_theme_selection() {
     echo -e "${C_ELECTRIC_PURPLE}  ╰──────────────────────────────────────────────────────────────────────────╯${C_RESET}"
     echo -e "  Select the primary brand & accent color scheme for the panel interface:"
     echo ""
-    echo -e "  ${C_CRIMSON} [ 1 ] Crimson Red   ${C_MUTED}(Signature JTG Red)${C_RESET}"
+    echo -e "  ${C_CRIMSON} [ 1 ] Crimson Red   ${C_MUTED}(Signature WALKSYS Red)${C_RESET}"
     echo -e "  ${C_DEEP_BLUE} [ 2 ] Cobalt Blue   ${C_MUTED}(Classic Deep Blue)${C_RESET}"
     echo -e "  ${C_ELECTRIC_PURPLE} [ 3 ] Neon Purple   ${C_MUTED}(Cyberpunk Glow)${C_RESET}"
     echo -e "  ${C_VIBRANT_CYAN} [ 4 ] Cyber Cyan    ${C_MUTED}(Electric Aqua)${C_RESET}"
@@ -303,11 +303,11 @@ prompt_docker_install() {
 }
 
 # ==============================================================================
-# SMART DIRECTORY DETECTION & RESOLUTION (Jtg & cd.j)
+# SMART DIRECTORY DETECTION & RESOLUTION (Walksys & cd.j)
 # ==============================================================================
 is_jtg_directory() {
     local target_dir="$1"
-    if [ -f "${target_dir}/package.json" ] && grep -q '"name": "jtg-panel"' "${target_dir}/package.json" 2>/dev/null; then
+    if [ -f "${target_dir}/package.json" ] && grep -q '"name": "Walksys-panel"' "${target_dir}/package.json" 2>/dev/null; then
         return 0
     fi
     if [ -f "${target_dir}/package.json" ] && [ -f "${target_dir}/server.ts" ]; then
@@ -317,7 +317,7 @@ is_jtg_directory() {
 }
 
 ensure_jtg_directory() {
-    # 1. If currently inside JTG Panel directory
+    # 1. If currently inside WALKSYS Panel directory
     if is_jtg_directory "."; then
         return 0
     fi
@@ -332,28 +332,28 @@ ensure_jtg_directory() {
 
     # 3. Check known candidate folders
     local candidate_paths=(
-        "./Jtg" "./jtg" "./JTG"
-        "../Jtg" "../jtg"
-        "$HOME/Jtg" "$HOME/jtg"
-        "/root/Jtg" "/root/jtg"
-        "/var/www/Jtg" "/var/www/jtg"
-        "/opt/Jtg" "/opt/jtg"
+        "./Walksys" "./Walksys" "./WALKSYS"
+        "../Walksys" "../Walksys"
+        "$HOME/Walksys" "$HOME/Walksys"
+        "/root/Walksys" "/root/Walksys"
+        "/var/www/Walksys" "/var/www/Walksys"
+        "/opt/Walksys" "/opt/Walksys"
     )
 
     for path in "${candidate_paths[@]}"; do
         if [ -d "$path" ] && is_jtg_directory "$path"; then
             cd "$path"
-            log_info "Detected JTG Panel directory at: ${C_VIBRANT_CYAN}$(pwd)${C_RESET}"
+            log_info "Detected WALKSYS Panel directory at: ${C_VIBRANT_CYAN}$(pwd)${C_RESET}"
             return 0
         fi
     done
 
     # 4. Search filesystem
     local search_result
-    search_result=$(find /root /home /var/www /opt . -maxdepth 3 -type d \( -name "Jtg" -o -name "jtg" -o -name "JTG" \) 2>/dev/null | head -n 1)
+    search_result=$(find /root /home /var/www /opt . -maxdepth 3 -type d \( -name "Walksys" -o -name "Walksys" -o -name "WALKSYS" \) 2>/dev/null | head -n 1)
     if [ -n "$search_result" ] && is_jtg_directory "$search_result"; then
         cd "$search_result"
-        log_info "Located JTG Panel directory at: ${C_VIBRANT_CYAN}$(pwd)${C_RESET}"
+        log_info "Located WALKSYS Panel directory at: ${C_VIBRANT_CYAN}$(pwd)${C_RESET}"
         return 0
     fi
 
@@ -368,19 +368,19 @@ prepare_repository() {
         PROJECT_DIR="$(pwd)"
         log_info "Using active workspace directory: ${PROJECT_DIR}"
         git pull origin main 2>/dev/null || git pull origin master 2>/dev/null || true
-    elif [ -d "Jtg" ] || [ -d "JTG" ]; then
-        if [ -d "Jtg" ]; then
-            PROJECT_DIR="$(pwd)/Jtg"
+    elif [ -d "Walksys" ] || [ -d "WALKSYS" ]; then
+        if [ -d "Walksys" ]; then
+            PROJECT_DIR="$(pwd)/Walksys"
         else
-            PROJECT_DIR="$(pwd)/JTG"
+            PROJECT_DIR="$(pwd)/WALKSYS"
         fi
         cd "$PROJECT_DIR"
-        log_info "Found existing JTG directory (${PROJECT_DIR}). Syncing repository..."
+        log_info "Found existing WALKSYS directory (${PROJECT_DIR}). Syncing repository..."
         git pull origin main 2>/dev/null || git pull origin master 2>/dev/null || true
     else
-        log_info "Cloning JTG Panel from ${REPO_URL}..."
-        git clone "$REPO_URL" Jtg
-        PROJECT_DIR="$(pwd)/Jtg"
+        log_info "Cloning WALKSYS Panel from ${REPO_URL}..."
+        git clone "$REPO_URL" Walksys
+        PROJECT_DIR="$(pwd)/Walksys"
         cd "$PROJECT_DIR"
     fi
 }
@@ -407,7 +407,7 @@ setup_environment() {
 
     cat > .env <<EOF
 # ==============================================================================
-# aashi - JTG PANEL Configuration
+# aashi - WALKSYS PANEL Configuration
 # Credit: Jishnu
 # ==============================================================================
 # NODE_ENV is set dynamically during runtime
@@ -464,17 +464,17 @@ configure_pm2_service() {
     fi
 
     # Terminate existing instance if present
-    pm2 delete jtg-panel 2>/dev/null || npx pm2 delete jtg-panel 2>/dev/null || true
+    pm2 delete Walksys-panel 2>/dev/null || npx pm2 delete Walksys-panel 2>/dev/null || true
 
     # Launch daemon
-    PORT="${target_port}" npx pm2 start "scripts/start-with-update.sh" --name "jtg-panel" 2>/dev/null || PORT="${target_port}" npx pm2 start "dist/server.cjs" --name "jtg-panel"
+    PORT="${target_port}" npx pm2 start "scripts/start-with-update.sh" --name "Walksys-panel" 2>/dev/null || PORT="${target_port}" npx pm2 start "dist/server.cjs" --name "Walksys-panel"
     npx pm2 save 2>/dev/null || true
 
     if [ "$EUID" -eq 0 ]; then
         npx pm2 startup systemd -u root --hp /root 2>/dev/null || true
     fi
 
-    log_success "PM2 service 'jtg-panel' registered and active."
+    log_success "PM2 service 'Walksys-panel' registered and active."
 }
 
 create_initial_admin() {
@@ -518,10 +518,10 @@ install_production() {
     echo -e "  ${C_MUTED}>>${C_RESET} ${C_WHITE}${C_BOLD}Creator / Credit:${C_RESET}       ${C_EMERALD}${PANEL_AUTHOR}${C_RESET}"
     echo ""
     echo -e "  ${C_MUTED}┌── Useful Management Commands ───────────────────────────────────────────┐${C_RESET}"
-    echo -e "  ${C_MUTED}│${C_RESET} Enter Directory:  ${C_VIBRANT_CYAN}cd Jtg${C_RESET} (or ${C_VIBRANT_CYAN}cd JTG${C_RESET})"
+    echo -e "  ${C_MUTED}│${C_RESET} Enter Directory:  ${C_VIBRANT_CYAN}cd Walksys${C_RESET} (or ${C_VIBRANT_CYAN}cd WALKSYS${C_RESET})"
     echo -e "  ${C_MUTED}│${C_RESET} Check Status:     ${C_VIBRANT_CYAN}npx pm2 status${C_RESET}"
-    echo -e "  ${C_MUTED}│${C_RESET} Live Logs:        ${C_VIBRANT_CYAN}npx pm2 logs jtg-panel${C_RESET}"
-    echo -e "  ${C_MUTED}│${C_RESET} Restart Panel:    ${C_VIBRANT_CYAN}npx pm2 restart jtg-panel${C_RESET}"
+    echo -e "  ${C_MUTED}│${C_RESET} Live Logs:        ${C_VIBRANT_CYAN}npx pm2 logs Walksys-panel${C_RESET}"
+    echo -e "  ${C_MUTED}│${C_RESET} Restart Panel:    ${C_VIBRANT_CYAN}npx pm2 restart Walksys-panel${C_RESET}"
     echo -e "  ${C_MUTED}│${C_RESET} Update Panel:     ${C_VIBRANT_CYAN}bash update.sh${C_RESET}"
     echo -e "  ${C_MUTED}│${C_RESET} Uninstall:        ${C_VIBRANT_CYAN}bash uninstall.sh${C_RESET}"
     echo -e "  ${C_MUTED}└─────────────────────────────────────────────────────────────────────────┘${C_RESET}"
@@ -581,7 +581,7 @@ while true; do
             elif ensure_jtg_directory && [ -f "update.sh" ]; then
                 bash update.sh
             else
-                log_error "Could not find JTG Panel update script."
+                log_error "Could not find WALKSYS Panel update script."
             fi
             echo ""
             read -r -p "  Press Enter to return to main menu..." _
@@ -590,23 +590,23 @@ while true; do
             ensure_jtg_directory || true
             if [ -f "package.json" ]; then
                 npm run createuser
-            elif [ -d "Jtg" ]; then
-                (cd Jtg && npm run createuser)
+            elif [ -d "Walksys" ]; then
+                (cd Walksys && npm run createuser)
             else
-                log_error "JTG Panel directory not found for user creation."
+                log_error "WALKSYS Panel directory not found for user creation."
             fi
             echo ""
             read -r -p "  Press Enter to return to main menu..." _
             ;;
         5)
             ensure_jtg_directory || true
-            log_info "Restarting JTG Panel..."
-            if command -v pm2 &> /dev/null && pm2 list 2>/dev/null | grep -q "jtg-panel"; then
-                pm2 restart jtg-panel
-            elif command -v npx &> /dev/null && npx pm2 list 2>/dev/null | grep -q "jtg-panel"; then
-                npx pm2 restart jtg-panel
-            elif command -v systemctl &> /dev/null && systemctl is-active --quiet jtg-panel 2>/dev/null; then
-                sudo systemctl restart jtg-panel
+            log_info "Restarting WALKSYS Panel..."
+            if command -v pm2 &> /dev/null && pm2 list 2>/dev/null | grep -q "Walksys-panel"; then
+                pm2 restart Walksys-panel
+            elif command -v npx &> /dev/null && npx pm2 list 2>/dev/null | grep -q "Walksys-panel"; then
+                npx pm2 restart Walksys-panel
+            elif command -v systemctl &> /dev/null && systemctl is-active --quiet Walksys-panel 2>/dev/null; then
+                sudo systemctl restart Walksys-panel
             else
                 npm run start:auto-update 2>/dev/null || (node dist/server.cjs &)
             fi
@@ -620,7 +620,7 @@ while true; do
             elif ensure_jtg_directory && [ -f "uninstall.sh" ]; then
                 bash uninstall.sh
             else
-                bash <(curl -fsSL https://raw.githubusercontent.com/JishnuTheGamer/Jtg/main/uninstall.sh 2>/dev/null) || true
+                bash <(curl -fsSL https://raw.githubusercontent.com/Walksys/Walksys/main/uninstall.sh 2>/dev/null) || true
             fi
             exit 0
             ;;

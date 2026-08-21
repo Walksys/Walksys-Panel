@@ -1,34 +1,34 @@
 #!/bin/bash
 
 # ==============================================================================
-# JTG Panel - Start with Auto-Update Check on Restart
+# WALKSYS Panel - Start with Auto-Update Check on Restart
 # ==============================================================================
 
 # Locate panel directory safely
 if [ -n "$PANEL_ROOT" ] && [ -d "$PANEL_ROOT" ]; then
     PANEL_DIR="$PANEL_ROOT"
-elif [ -f "package.json" ] && grep -q '"name": "jtg-panel"' "package.json" 2>/dev/null; then
+elif [ -f "package.json" ] && grep -q '"name": "Walksys-panel"' "package.json" 2>/dev/null; then
     PANEL_DIR="$(pwd)"
 elif [ -f "$(dirname "$0")/../package.json" ]; then
     PANEL_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-elif [ -d "/workspace/Jtg" ]; then
-    PANEL_DIR="/workspace/Jtg"
+elif [ -d "/workspace/Walksys" ]; then
+    PANEL_DIR="/workspace/Walksys"
 elif [ -d "/workspace" ] && [ -f "/workspace/package.json" ]; then
     PANEL_DIR="/workspace"
 elif [ -d "/app" ] && [ -f "/app/package.json" ]; then
     PANEL_DIR="/app"
-elif [ -d "$HOME/Jtg" ]; then
-    PANEL_DIR="$HOME/Jtg"
-elif [ -d "/root/Jtg" ]; then
-    PANEL_DIR="/root/Jtg"
+elif [ -d "$HOME/Walksys" ]; then
+    PANEL_DIR="$HOME/Walksys"
+elif [ -d "/root/Walksys" ]; then
+    PANEL_DIR="/root/Walksys"
 else
     PANEL_DIR="$(pwd)"
 fi
 
 cd "$PANEL_DIR" || exit 1
 
-echo "[JTG Panel] Working Directory: $(pwd)"
-echo "[JTG Panel] Checking for updates from repository on restart..."
+echo "[WALKSYS Panel] Working Directory: $(pwd)"
+echo "[WALKSYS Panel] Checking for updates from repository on restart..."
 
 if command -v git &> /dev/null && [ -d ".git" ]; then
     # Fetch latest remote changes quietly
@@ -38,28 +38,28 @@ if command -v git &> /dev/null && [ -d ".git" ]; then
     REMOTE_COMMIT=$(git rev-parse @{u} 2>/dev/null || echo "")
 
     if [ -n "$LOCAL_COMMIT" ] && [ -n "$REMOTE_COMMIT" ] && [ "$LOCAL_COMMIT" != "$REMOTE_COMMIT" ]; then
-        echo "[JTG Panel] Updates detected ($LOCAL_COMMIT -> $REMOTE_COMMIT)! Pulling changes..."
+        echo "[WALKSYS Panel] Updates detected ($LOCAL_COMMIT -> $REMOTE_COMMIT)! Pulling changes..."
         git pull --ff-only origin main 2>/dev/null || git pull --ff-only origin master 2>/dev/null || git pull || true
         
-        echo "[JTG Panel] Installing updated dependencies..."
+        echo "[WALKSYS Panel] Installing updated dependencies..."
         npm install --no-audit --no-fund --quiet || true
         
-        echo "[JTG Panel] Compiling production build..."
+        echo "[WALKSYS Panel] Compiling production build..."
         npm run build || true
-        echo "[JTG Panel] Update successfully applied!"
+        echo "[WALKSYS Panel] Update successfully applied!"
     else
-        echo "[JTG Panel] Panel is up-to-date (commit: ${LOCAL_COMMIT:0:7})."
+        echo "[WALKSYS Panel] Panel is up-to-date (commit: ${LOCAL_COMMIT:0:7})."
     fi
 else
-    echo "[JTG Panel] Git repository not detected or git command unavailable, skipping auto-pull."
+    echo "[WALKSYS Panel] Git repository not detected or git command unavailable, skipping auto-pull."
 fi
 
 # Ensure dist exists
 if [ ! -f "dist/server.cjs" ]; then
-    echo "[JTG Panel] Compiling initial build..."
+    echo "[WALKSYS Panel] Compiling initial build..."
     npm run build
 fi
 
-echo "[JTG Panel] Launching JTG Server Management Panel in production mode..."
+echo "[WALKSYS Panel] Launching WALKSYS Server Management Panel in production mode..."
 export NODE_ENV=production
 exec node dist/server.cjs

@@ -7,18 +7,18 @@ import './index.css';
 // Global error handlers to capture unhandled client errors
 if (typeof window !== "undefined") {
   window.addEventListener("error", (event) => {
-    console.error("[JTG Global Error]", event.error || event.message);
+    console.error("[WALKSYS Global Error]", event.error || event.message);
   });
 
   window.addEventListener("unhandledrejection", (event) => {
-    console.error("[JTG Unhandled Rejection]", event.reason);
+    console.error("[WALKSYS Unhandled Rejection]", event.reason);
   });
 }
 
 const rootElement = document.getElementById('root');
 
 if (!rootElement) {
-  throw new Error("JTG Panel root element (#root) was not found.");
+  throw new Error("WALKSYS Panel root element (#root) was not found.");
 }
 
 createRoot(rootElement).render(

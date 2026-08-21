@@ -13,7 +13,7 @@ function resolveDataDir(): string {
   if (fs.existsSync(parentData)) {
     return parentData;
   }
-  const jtgChildData = path.join(process.cwd(), "Jtg", ".data");
+  const jtgChildData = path.join(process.cwd(), "Walksys", ".data");
   if (fs.existsSync(jtgChildData)) {
     return jtgChildData;
   }
@@ -61,7 +61,7 @@ async function main() {
   }
 
   console.log("\n========================================");
-  console.log("   JTG PANEL - PRIMARY OWNER SETUP      ");
+  console.log("   WALKSYS PANEL - PRIMARY OWNER SETUP      ");
   console.log("========================================\n");
 
   const rl = readline.createInterface({

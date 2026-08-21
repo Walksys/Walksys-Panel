@@ -8,8 +8,8 @@
 #  ╚█████╔╝   ██║   ╚██████╔╝    ██║     ██║  ██║██║ ╚████║███████╗███████╗
 #   ╚════╝    ╚═╝    ╚═════╝     ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝
 #
-#  Product Name : aashi - JTG PANEL (Uninstaller)
-#  Banner       : JTG PANEL
+#  Product Name : aashi - WALKSYS PANEL (Uninstaller)
+#  Banner       : WALKSYS PANEL
 #  Creator      : Jishnu
 # ==============================================================================
 
@@ -28,8 +28,8 @@ C_MUTED='\033[38;5;244m'
 
 echo ""
 echo -e "${C_CRIMSON}${C_BOLD}  ╭──────────────────────────────────────────────────────────────────────────╮${C_RESET}"
-echo -e "${C_CRIMSON}${C_BOLD}  │                 JTG PANEL - UNINSTALLATION WIZARD                        │${C_RESET}"
-echo -e "${C_CRIMSON}${C_BOLD}  │               Credit: Jishnu  |  aashi - JTG PANEL                       │${C_RESET}"
+echo -e "${C_CRIMSON}${C_BOLD}  │                 WALKSYS PANEL - UNINSTALLATION WIZARD                        │${C_RESET}"
+echo -e "${C_CRIMSON}${C_BOLD}  │               Credit: Jishnu  |  aashi - WALKSYS PANEL                       │${C_RESET}"
 echo -e "${C_CRIMSON}${C_BOLD}  ╰──────────────────────────────────────────────────────────────────────────╯${C_RESET}"
 echo ""
 echo -e "  ${C_AMBER}${C_BOLD}WARNING:${C_RESET} ${C_WHITE}This will stop PM2 services and clean up panel files.${C_RESET}"
@@ -38,7 +38,7 @@ echo ""
 
 is_jtg_directory() {
     local target_dir="$1"
-    if [ -f "${target_dir}/package.json" ] && grep -q '"name": "jtg-panel"' "${target_dir}/package.json" 2>/dev/null; then
+    if [ -f "${target_dir}/package.json" ] && grep -q '"name": "Walksys-panel"' "${target_dir}/package.json" 2>/dev/null; then
         return 0
     fi
     if [ -f "${target_dir}/package.json" ] && [ -f "${target_dir}/server.ts" ]; then
@@ -60,12 +60,12 @@ locate_jtg_directory() {
     fi
 
     local candidate_paths=(
-        "./Jtg" "./jtg" "./JTG"
-        "../Jtg" "../jtg"
-        "$HOME/Jtg" "$HOME/jtg"
-        "/root/Jtg" "/root/jtg"
-        "/var/www/Jtg" "/var/www/jtg"
-        "/opt/Jtg" "/opt/jtg"
+        "./Walksys" "./Walksys" "./WALKSYS"
+        "../Walksys" "../Walksys"
+        "$HOME/Walksys" "$HOME/Walksys"
+        "/root/Walksys" "/root/Walksys"
+        "/var/www/Walksys" "/var/www/Walksys"
+        "/opt/Walksys" "/opt/Walksys"
     )
 
     for path in "${candidate_paths[@]}"; do
@@ -76,7 +76,7 @@ locate_jtg_directory() {
     done
 
     local search_result
-    search_result=$(find /root /home /var/www /opt . -maxdepth 3 -type d \( -name "Jtg" -o -name "jtg" \) 2>/dev/null | head -n 1)
+    search_result=$(find /root /home /var/www /opt . -maxdepth 3 -type d \( -name "Walksys" -o -name "Walksys" \) 2>/dev/null | head -n 1)
     if [ -n "$search_result" ] && is_jtg_directory "$search_result"; then
         cd "$search_result"
         return 0
@@ -85,7 +85,7 @@ locate_jtg_directory() {
     return 1
 }
 
-read -r -p "  Are you sure you want to uninstall JTG Panel? [y/N]: " confirm
+read -r -p "  Are you sure you want to uninstall WALKSYS Panel? [y/N]: " confirm
 if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
     echo -e "\n  ${C_DEEP_BLUE}[INFO]${C_RESET} Uninstallation cancelled."
     exit 0
@@ -93,7 +93,7 @@ fi
 
 echo -e "\n  ${C_DEEP_BLUE}[INFO]${C_RESET} Stopping PM2 background services..."
 if command -v pm2 &> /dev/null; then
-    pm2 delete jtg-panel 2>/dev/null || npx pm2 delete jtg-panel 2>/dev/null || true
+    pm2 delete Walksys-panel 2>/dev/null || npx pm2 delete Walksys-panel 2>/dev/null || true
     pm2 save 2>/dev/null || npx pm2 save 2>/dev/null || true
 fi
 
@@ -102,11 +102,11 @@ locate_jtg_directory || true
 echo -e "  ${C_DEEP_BLUE}[INFO]${C_RESET} Cleaning application workspace files (preserving .data)..."
 if is_jtg_directory "."; then
     find . -maxdepth 1 ! -name '.data' ! -name '.' ! -name '..' -exec rm -rf {} + 2>/dev/null || true
-elif [ -d "Jtg" ]; then
-    rm -rf Jtg/node_modules Jtg/dist Jtg/src Jtg/.git Jtg/public Jtg/package.json Jtg/install.sh Jtg/update.sh 2>/dev/null || true
+elif [ -d "Walksys" ]; then
+    rm -rf Walksys/node_modules Walksys/dist Walksys/src Walksys/.git Walksys/public Walksys/package.json Walksys/install.sh Walksys/update.sh 2>/dev/null || true
 fi
 
 echo ""
-echo -e "  ${C_EMERALD}${C_BOLD}[✓ SUCCESS]${C_RESET} ${C_WHITE}JTG Panel uninstalled cleanly.${C_RESET}"
+echo -e "  ${C_EMERALD}${C_BOLD}[✓ SUCCESS]${C_RESET} ${C_WHITE}WALKSYS Panel uninstalled cleanly.${C_RESET}"
 echo -e "  ${C_MUTED}All server configurations and worlds remain preserved in .data/${C_RESET}"
 echo ""

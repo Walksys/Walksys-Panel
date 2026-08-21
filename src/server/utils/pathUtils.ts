@@ -15,8 +15,8 @@ export function getProjectRoot(): string {
   }
 
   // 1. Explicit environment variable overrides
-  if (process.env.JTG_ROOT_DIR && fs.existsSync(process.env.JTG_ROOT_DIR)) {
-    cachedProjectRoot = path.resolve(process.env.JTG_ROOT_DIR);
+  if (process.env.WALKSYS_ROOT_DIR && fs.existsSync(process.env.WALKSYS_ROOT_DIR)) {
+    cachedProjectRoot = path.resolve(process.env.WALKSYS_ROOT_DIR);
     return cachedProjectRoot;
   }
   if (process.env.PANEL_ROOT && fs.existsSync(process.env.PANEL_ROOT)) {
@@ -48,17 +48,17 @@ export function getProjectRoot(): string {
   // 3. From process.cwd() and common subdirectories
   const cwd = process.cwd();
   candidateDirs.push(path.resolve(cwd));
-  candidateDirs.push(path.resolve(cwd, "Jtg"));
-  candidateDirs.push(path.resolve(cwd, "JTG"));
-  candidateDirs.push(path.resolve(cwd, "jtg-panel"));
+  candidateDirs.push(path.resolve(cwd, "Walksys"));
+  candidateDirs.push(path.resolve(cwd, "WALKSYS"));
+  candidateDirs.push(path.resolve(cwd, "Walksys-panel"));
 
-  // Check each candidate for package.json with name "jtg-panel" or existing critical files
+  // Check each candidate for package.json with name "Walksys-panel" or existing critical files
   for (const dir of candidateDirs) {
     try {
       const pkgPath = path.join(dir, "package.json");
       if (fs.existsSync(pkgPath)) {
         const pkg = fs.readJSONSync(pkgPath, { throws: false });
-        if (pkg && (pkg.name === "jtg-panel" || pkg.name === "minecraft-server-manager")) {
+        if (pkg && (pkg.name === "Walksys-panel" || pkg.name === "minecraft-server-manager")) {
           cachedProjectRoot = dir;
           return dir;
         }

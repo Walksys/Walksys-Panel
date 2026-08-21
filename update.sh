@@ -29,7 +29,7 @@ trap cleanup EXIT ERR INT TERM
 # 1. Detect the current installation directory.
 is_jtg_directory() {
     local target_dir="$1"
-    if [ -f "${target_dir}/package.json" ] && grep -q '"name": "jtg-panel"' "${target_dir}/package.json" 2>/dev/null; then
+    if [ -f "${target_dir}/package.json" ] && grep -q '"name": "Walksys-panel"' "${target_dir}/package.json" 2>/dev/null; then
         return 0
     fi
     return 1
@@ -43,7 +43,7 @@ locate_jtg_directory() {
         cd "$script_dir"
         return 0
     fi
-    local candidate_paths=("./Jtg" "../Jtg" "$HOME/Jtg" "/root/Jtg" "/var/www/Jtg" "/opt/Jtg")
+    local candidate_paths=("./Walksys" "../Walksys" "$HOME/Walksys" "/root/Walksys" "/var/www/Walksys" "/opt/Walksys")
     for path in "${candidate_paths[@]}"; do
         if [ -d "$path" ] && is_jtg_directory "$path"; then
             cd "$path"
@@ -54,13 +54,13 @@ locate_jtg_directory() {
 }
 
 echo -e "${C_VIBRANT_CYAN}${C_BOLD}  ╭──────────────────────────────────────────────────────────────────────────╮${C_RESET}"
-echo -e "${C_VIBRANT_CYAN}${C_BOLD}  │                 JTG PANEL - SAFE UPDATE SUITE                            │${C_RESET}"
+echo -e "${C_VIBRANT_CYAN}${C_BOLD}  │                 WALKSYS PANEL - SAFE UPDATE SUITE                            │${C_RESET}"
 echo -e "${C_VIBRANT_CYAN}${C_BOLD}  ╰──────────────────────────────────────────────────────────────────────────╯${C_RESET}"
 echo ""
 
 log_info "[1/11] Checking installation & environment..."
 if ! locate_jtg_directory; then
-    log_error "JTG Panel directory could not be found automatically."
+    log_error "WALKSYS Panel directory could not be found automatically."
     exit 1
 fi
 log_success "Active Workspace: $(pwd)"
@@ -156,7 +156,7 @@ else
 fi
 
 if [ "$LOCAL_CHANGES" -eq 1 ]; then
-    git stash push --include-untracked -m "JTG pre-update backup ${TIMESTAMP}" >/dev/null 2>&1 || true
+    git stash push --include-untracked -m "WALKSYS pre-update backup ${TIMESTAMP}" >/dev/null 2>&1 || true
     log_warn "Local changes were backed up to Git stash before updating."
 fi
 
@@ -245,12 +245,12 @@ fi
 log_success "All HTML asset references, bundles, and server endpoints verified on disk."
 
 log_info "[11/11] Restarting background service..."
-if command -v pm2 &> /dev/null && pm2 list 2>/dev/null | grep -q "jtg-panel"; then
-    pm2 restart jtg-panel >/dev/null 2>&1 || npx pm2 restart jtg-panel >/dev/null 2>&1 || true
-elif command -v npx &> /dev/null && npx pm2 list 2>/dev/null | grep -q "jtg-panel"; then
-    npx pm2 restart jtg-panel >/dev/null 2>&1 || true
-elif command -v systemctl &> /dev/null && systemctl is-active --quiet jtg-panel 2>/dev/null; then
-    sudo systemctl restart jtg-panel >/dev/null 2>&1 || true
+if command -v pm2 &> /dev/null && pm2 list 2>/dev/null | grep -q "Walksys-panel"; then
+    pm2 restart Walksys-panel >/dev/null 2>&1 || npx pm2 restart Walksys-panel >/dev/null 2>&1 || true
+elif command -v npx &> /dev/null && npx pm2 list 2>/dev/null | grep -q "Walksys-panel"; then
+    npx pm2 restart Walksys-panel >/dev/null 2>&1 || true
+elif command -v systemctl &> /dev/null && systemctl is-active --quiet Walksys-panel 2>/dev/null; then
+    sudo systemctl restart Walksys-panel >/dev/null 2>&1 || true
 fi
 
 # Clean up temporary backup folder
@@ -267,6 +267,6 @@ cat > ".releases/update-state.json" <<METADATA
 }
 METADATA
 
-log_success "JTG Panel updated successfully!"
+log_success "WALKSYS Panel updated successfully!"
 rm -f "$UPDATE_LOCK"
 

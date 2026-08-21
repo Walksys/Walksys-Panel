@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the JTG Panel project will be documented in this file.
+All notable changes to the WALKSYS Panel project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security Improvements
 - **World DataVersion Safety Gate**: Gated `-DPaper.IgnoreWorldDataVersion=true` JVM flag behind pre-flight world version compatibility validation, explicit admin toggle in Server Settings, and safety backup recommendations to protect Minecraft worlds against chunk/entity corruption.
-- **Strict JWT Secret Validation**: Removed hardcoded fallback secret (`jtg-panel-super-secret`). Enforced a mandatory 32+ character `JWT_SECRET` requirement in production environments and automated secure cryptographic secret generation in development mode.
+- **Strict JWT Secret Validation**: Removed hardcoded fallback secret (`Walksys-panel-super-secret`). Enforced a mandatory 32+ character `JWT_SECRET` requirement in production environments and automated secure cryptographic secret generation in development mode.
 - **Authentication Rate Limiting**: Added `express-rate-limit` middleware on `/api/auth/login` (5 attempts per 15 minutes) and `/api/auth/register` (3 accounts per hour) with standard HTTP 429 response handling and brute-force alert logging.
 - **Privilege Escalation Prevention**: Fixed server creation and update endpoints in `servers.ts` to strictly require administrative roles (`admin` or `owner`) before allowing reassignment of `owner` / `ownerId`.
 - **POSIX File Permissions Hardening**: Replaced all instances of `0o777` permissions with least-privilege modes (`0o750` for directories and executables, `0o644` for files) and implemented `secureChmod` interceptors across server file operations.

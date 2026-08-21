@@ -1209,7 +1209,7 @@ export default function AdminSettingsPage(): React.ReactElement {
                                 <div>
                                   <p className="font-semibold text-amber-200">Runtime Configuration Locked by Installer</p>
                                   <p className="mt-1 text-amber-300/80 leading-relaxed">
-                                    The execution engine was configured and locked during installation ({panelName || 'JTG Panel'}).
+                                    The execution engine was configured and locked during installation ({panelName || 'WALKSYS Panel'}).
                                     To switch between Docker and Local Process runtime, re-run <code className="bg-black/30 px-1 py-0.5 rounded font-mono">bash install.sh</code> or edit <code className="bg-black/30 px-1 py-0.5 rounded font-mono">.env</code>.
                                   </p>
                                 </div>
@@ -1389,12 +1389,12 @@ export default function AdminSettingsPage(): React.ReactElement {
                           <RefreshCw className="mr-3 text-theme-500 w-5 h-5" /> System Update & Maintenance
                         </h2>
                         <p className="text-xs text-muted-foreground mt-1">
-                          Manage core system updates, rebuilds, and maintenance procedures for the JTG Panel.
+                          Manage core system updates, rebuilds, and maintenance procedures for the WALKSYS Panel.
                         </p>
                       </div>
                       <div className="relative z-10">
                         <p className="text-muted-foreground text-sm mb-6 max-w-2xl">
-                          Trigger an automatic update of the JTG Panel. This will run git pull and rebuild the system. The panel will be unavailable for a few seconds during this process.
+                          Trigger an automatic update of the WALKSYS Panel. This will run git pull and rebuild the system. The panel will be unavailable for a few seconds during this process.
                         </p>
                         <button 
                           onClick={handleSystemUpdate}

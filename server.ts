@@ -144,7 +144,7 @@ async function startServer() {
     const buildCheck = verifyBuildDirectory(distPath);
     const isCodeSandbox = Boolean(process.env.CODESANDBOX || process.env.SANDBOX_URL || process.env.CSB);
 
-    console.log(`\n\x1b[36m[JTG Frontend Diagnostics]\x1b[0m`);
+    console.log(`\n\x1b[36m[WALKSYS Frontend Diagnostics]\x1b[0m`);
     console.log(`  Environment: ${isCodeSandbox ? 'codesandbox' : (process.env.NODE_ENV || 'production')}`);
     console.log(`  CWD: ${process.cwd()}`);
     console.log(`  Resolved app root: ${appRoot}`);
@@ -177,7 +177,7 @@ async function startServer() {
           <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>JTG Panel - Maintenance Required</title>
+            <title>WALKSYS Panel - Maintenance Required</title>
             <style>
               body { background: #0d1117; color: #e6edf3; font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; }
               .card { background: #161b22; border: 1px solid #30363d; border-radius: 16px; padding: 32px; max-width: 600px; width: 100%; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); }
@@ -193,7 +193,7 @@ async function startServer() {
               <p>The panel's compiled frontend bundle was not found or is missing referenced files. To prevent a blank white screen, access is paused while you rebuild.</p>
               <div class="code-box">${buildCheck.errors.map(e => `• ${e}`).join('<br>')}</div>
               <p style="color: #c9d1d9; font-weight: 600; margin-bottom: 6px;">How to resolve on your server:</p>
-              <div class="solution">bash update.sh<br># or: npm run build && npx pm2 restart jtg-panel</div>
+              <div class="solution">bash update.sh<br># or: npm run build && npx pm2 restart Walksys-panel</div>
             </div>
           </body>
           </html>
@@ -265,7 +265,7 @@ async function startServer() {
   }
 
   httpServer.listen(PORT, "0.0.0.0", () => {
-    console.log(`JTG Panel running on port ${PORT}`);
+    console.log(`WALKSYS Panel running on port ${PORT}`);
   });
 }
 

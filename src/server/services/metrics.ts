@@ -73,7 +73,7 @@ export const getServerDiskUsageGB = async (serverId: string): Promise<number> =>
  * 2. Subtracts file cache / inactive_file memory (Linux OS disk buffers), ensuring
  *    only active container RSS and Java allocations are reported.
  * 3. Never falls back to or includes host VPS memory or Node.js panel memory.
- * 4. Uses the server's configured JTG RAM allocation as the display limit.
+ * 4. Uses the server's configured WALKSYS RAM allocation as the display limit.
  * 5. If actual container usage exceeds configured limit, marks overLimit: true.
  */
 export function calculateDockerMemoryStats(statsResult: any, configuredRamGB: number): ServerMemoryStats {
@@ -92,7 +92,7 @@ export function calculateDockerMemoryStats(statsResult: any, configuredRamGB: nu
   // Active container memory (RAM used by Java process + container runtime, excluding reclaimable file cache)
   const containerUsedBytes = Math.max(0, rawUsageBytes - cacheBytes);
 
-  // Use the JTG configured allocation as the display limit (e.g. 4GB = 4 * 1024 * 1024 * 1024)
+  // Use the WALKSYS configured allocation as the display limit (e.g. 4GB = 4 * 1024 * 1024 * 1024)
   const ramGB = typeof configuredRamGB === "number" && configuredRamGB > 0 ? configuredRamGB : 2;
   const configuredLimitBytes = Math.round(ramGB * 1024 * 1024 * 1024);
 
@@ -114,7 +114,7 @@ export function calculateDockerMemoryStats(statsResult: any, configuredRamGB: nu
  * Rules:
  * 1. Strictly measures only the target Minecraft Java PID and its child process tree.
  * 2. Never includes Node.js panel process or VPS host memory.
- * 3. Uses the configured JTG RAM allocation as the display limit.
+ * 3. Uses the configured WALKSYS RAM allocation as the display limit.
  */
 export function calculateLocalMemoryStats(
   pidsUsage: Array<{ memory?: number }>,
